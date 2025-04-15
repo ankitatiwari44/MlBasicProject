@@ -47,7 +47,53 @@ class ModelTrainer:
                 "Adaboost Regressor": AdaBoostRegressor()
             }
 
-            model_report:dict = evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models)
+            params = {
+                "Linear Regression": {},  # No hyperparameters to tune
+
+                "K Neighbours Regressor": {
+                    "n_neighbors": [ 5, 7, 9,11]
+                },
+
+                "Decision Tree": {
+                    "criterion": ["squared_error", "absolute_error", "friedman_mse","poisson"]
+                },
+
+                "Random Forest Regressor": {
+                    "n_estimators": [8,16,32,64,128,256]
+                },
+
+                "Gradient Boosting": {
+                    "n_estimators":  [8,16,32,64,128,256],
+                    "learning_rate": [0.01, 0.05, 0.1,0.001],
+                    "subsample": [0.6,0.7,0.75,0.8,0.85,0.9, 1.0]
+                },
+
+                "Xgb Regressor": {
+                    "n_estimators": [8,16,32,64,128,256],
+                    "learning_rate": [0.01, 0.05, 0.1,0.001]
+                },
+
+                "CatBoost Regressor": {
+                    "depth": [6, 8,10],
+                    "learning_rate": [0.01, 0.05, 0.1],
+                    "iterations": [30,50,100]
+                },
+
+                "Adaboost Regressor": {
+                    "n_estimators": [8,16,32,64,128,256],
+                    "learning_rate": [0.01, 0.05, 0.1,0.001]
+                }
+            }
+
+
+            model_report, best_model = evaluate_models(
+                X_train=X_train,
+                y_train=y_train,
+                X_test=X_test,
+                y_test=y_test,
+                models=models,
+                param=params
+            )
 
             # To get best model score from dictionary
             best_model_score = max(sorted(model_report.values()))
