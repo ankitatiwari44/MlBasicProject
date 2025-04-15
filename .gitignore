@@ -1,2 +1,34 @@
 
+# Ignore virtual environments and Python packaging
 venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.env
+mlproject.egg-info/
+
+# Ignore logs and temporary data
+logs/
+*.log
+
+# Ignore Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Ignore everything else
+*
+
+# But keep these files and folders
+!.gitignore
+!README.md
+!requirements.txt
+!setup.py
+!artifacts/
+!notebook/
+!src/
+
+# Allow contents inside these folders
+!artifacts/**
+!notebook/**
+!src/**
