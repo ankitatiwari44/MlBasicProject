@@ -8,6 +8,7 @@ env.bak/
 venv.bak/
 .env
 mlproject.egg-info/
+.mlproject.egg-info/
 
 # Ignore logs and temporary data
 logs/
